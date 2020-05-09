@@ -5,11 +5,6 @@ wget -P data http://nlp.stanford.edu/data/glove.6B.zip
 unzip data/glove.6B.zip -d data/glove
 rm data/glove.6B.zip
 
-# Image Features
-wget -P data http://data.lip6.fr/cadene/block/coco/extract_rcnn/2018-04-27_bottom-up-attention_fixed_36.tar
-tar -xvf 2018-04-27_bottom-up-attention_fixed_36.tar
-rm data/2018-04-27_bottom-up-attention_fixed_36.tar
-
 # VQA-CP2
 wget -P data https://computing.ece.vt.edu/~aish/vqacp/vqacp_v2_train_annotations.json
 wget -P data https://computing.ece.vt.edu/~aish/vqacp/vqacp_v2_test_annotations.json
