@@ -33,4 +33,8 @@ CUDA_VISIBLE_DEVICES=0 python main.py --dataset [] --mode [] --debias [] --topq 
 to train a model
 
 ### Testing
-
+Run
+```
+CUDA_VISIBLE_DEVICES=0 python eval.py --dataset [] --debias [] --model_state []
+```
+to eval a model
