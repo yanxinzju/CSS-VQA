@@ -136,17 +136,6 @@ def main():
     else:
         raise RuntimeError(args.mode)
 
-    # if dataset == 'cpv2':
-    #     ans2label_path = os.path.join('data', 'cp-cache', 'trainval_ans2label.pkl')
-    #     label2ans_path = os.path.join('data', 'cp-cache', 'trainval_label2ans.pkl')
-    # elif dataset == 'cpv1':
-    #     ans2label_path = os.path.join('data', 'cp-v1-cache', 'trainval_ans2label.pkl')
-    #     label2ans_path = os.path.join('data', 'cp-v1-cache', 'trainval_label2ans.pkl')
-    # elif dataset == 'v2':
-    #     ans2label_path = os.path.join('data', 'cache', 'trainval_ans2label.pkl')
-    #     label2ans_path = os.path.join('data', 'cache', 'trainval_label2ans.pkl')
-    # ans2label = cPickle.load(open(ans2label_path, 'rb'))
-    # label2ans = cPickle.load(open(label2ans_path, 'rb'))
 
     model_state = torch.load(args.model_state)
     model.load_state_dict(model_state)
@@ -167,8 +156,6 @@ def main():
     print("Starting eval...")
 
     evaluate(model,eval_loader,qid2type)
-    # evaluate_newfsr1(model,eval_loader,qid2type,label2ans,3)
-    # generate_vision_file(model,eval_loader,qid2type,label2ans)
 
 
 
