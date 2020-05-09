@@ -10,3 +10,9 @@ pytorch==1.1.0 <br>
 Click==7.0 <br>
 numpy==1.16.5 <br>
 tqdm==4.35.0 <br>
+
+### Data Setup
+You can use to download the data
+```
+bash tools/download.sh
+```
