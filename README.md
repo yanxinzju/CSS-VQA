@@ -16,3 +16,4 @@ You can use to download the data
 ```
 bash tools/download.sh
 ```
+and the rest of the data and trained model can be obtained from [here](https://pan.baidu.com/s/1oHdwYDSJXC1mlmvu8cQhKw) passwd:3jot
