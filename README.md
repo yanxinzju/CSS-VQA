@@ -25,3 +25,12 @@ bash tools/process.sh
 ```
 to process the data <br>
 
+### Training
+Run
+```
+CUDA_VISIBLE_DEVICES=0 python main.py --dataset [] --mode [] --debias [] --topq [] --topv [] --qvp [] --output [] --seed 0
+```
+to train a model
+
+### Testing
+
