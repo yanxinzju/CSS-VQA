@@ -4,7 +4,7 @@ import sys
 import json
 import numpy as np
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
-from all_dataset import Dictionary
+from dataset import Dictionary
 
 
     

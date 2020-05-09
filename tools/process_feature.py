@@ -1,6 +1,7 @@
 import os
 from tqdm import tqdm
 import shutil
+import sys
 sys.path.append(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
 root='data/2018-04-27_bottom-up-attention_fixed_36'
 new_root='data/rcnn_feature'
