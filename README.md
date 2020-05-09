@@ -4,7 +4,7 @@ This repo contains code modified from [here](https://github.com/chrisc36/bottom-
 
 ### Prerequisites
 
-Make sure you are on a machine with a NVIDIA GPU and Python 2.7 with about 100 GB disk space.
+Make sure you are on a machine with a NVIDIA GPU and Python 2.7 with about 100 GB disk space. <br>
 h5py==2.10.0 <br>
 pytorch==1.1.0 <br>
 Click==7.0 <br>
