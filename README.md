@@ -12,10 +12,16 @@ numpy==1.16.5 <br>
 tqdm==4.35.0 <br>
 
 ### Data Setup
-You can use to download the data
+You can use
 ```
 bash tools/download.sh
 ```
 to download the data <br>
 and the rest of the data and trained model can be obtained from [here](https://pan.baidu.com/s/1oHdwYDSJXC1mlmvu8cQhKw) passwd:3jot
-unzip feature1.zip and feature2.zip and merge them into data/rcnn_feature/
+unzip feature1.zip and feature2.zip and merge them into data/rcnn_feature/ <br>
+use
+```
+bash tools/process.sh 
+```
+to process the data <br>
+
