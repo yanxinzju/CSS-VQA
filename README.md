@@ -40,9 +40,17 @@ CUDA_VISIBLE_DEVICES=0 python eval.py --dataset [] --debias [] --model_state []
 to eval a model
 
 
+
+## Citation
+
+If you find this code useful, please cite the following paper:
+
+  ```
 @inproceedings{chen2020counterfactual,
   title={Counterfactual Samples Synthesizing for Robust Visual Question Answering},
   author={Chen, Long and Yan, Xin and Xiao, Jun and Zhang, Hanwang and Pu, Shiliang and Zhuang, Yueting},
   booktitle={CVPR},
   year={2020}
 }
+  ```
+
