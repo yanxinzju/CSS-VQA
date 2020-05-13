@@ -28,14 +28,14 @@ to process the data <br>
 ### Training
 Run
 ```
-CUDA_VISIBLE_DEVICES=0 python main.py --dataset [] --mode [] --debias [] --topq [] --topv [] --qvp [] --output [] --seed 0
+CUDA_VISIBLE_DEVICES=0 python main.py --dataset cpv2 --mode q_v_debias --debias learned_mixin --topq 1 --topv -1 --qvp 5 --output [] --seed 0
 ```
 to train a model
 
 ### Testing
 Run
 ```
-CUDA_VISIBLE_DEVICES=0 python eval.py --dataset [] --debias [] --model_state []
+CUDA_VISIBLE_DEVICES=0 python eval.py --dataset cpv2 --debias learned_mixin --model_state []
 ```
 to eval a model
 
