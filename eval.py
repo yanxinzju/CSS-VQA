@@ -103,7 +103,58 @@ def evaluate(model,dataloader,qid2type):
     print('\teval other score: %.2f' % (100 * score_other))
     print('\teval number score: %.2f' % (100 * score_number))
 
+def evaluate_ai(model,dataloader,qid2type,label2ans):
+    score=0
+    upper_bound=0
 
+    ai_top1=0
+    ai_top2=0
+    ai_top3=0
+
+    for v, q, a, b, qids, hintscore in tqdm(dataloader, ncols=100, total=len(dataloader), desc="eval"):
+        v = Variable(v, requires_grad=False).cuda().float().requires_grad_()
+        q = Variable(q, requires_grad=False).cuda()
+        a=a.cuda()
+        hintscore=hintscore.cuda().float()
+        pred, _, _ = model(v, q, None, None, None)
+        vqa_grad = torch.autograd.grad((pred * (a > 0).float()).sum(), v, create_graph=True)[0]  # [b , 36, 2048]
+
+        vqa_grad_cam=vqa_grad.sum(2)
+        sv_ind=torch.argmax(vqa_grad_cam,1)
+
+        x_ind_top1=torch.topk(vqa_grad_cam,k=1)[1]
+        x_ind_top2=torch.topk(vqa_grad_cam,k=2)[1]
+        x_ind_top3=torch.topk(vqa_grad_cam,k=3)[1]
+
+        y_score_top1 = hintscore.gather(1,x_ind_top1).sum(1)/1
+        y_score_top2 = hintscore.gather(1,x_ind_top2).sum(1)/2
+        y_score_top3 = hintscore.gather(1,x_ind_top3).sum(1)/3
+
+
+        batch_score=compute_score_with_logits(pred,a.cuda()).cpu().numpy().sum(1)
+        score+=batch_score.sum()
+        upper_bound+=(a.max(1)[0]).sum()
+        qids=qids.detach().cpu().int().numpy()
+        for j in range(len(qids)):
+            if batch_score[j]>0:
+                ai_top1 += y_score_top1[j]
+                ai_top2 += y_score_top2[j]
+                ai_top3 += y_score_top3[j]
+
+
+
+    score = score / len(dataloader.dataset)
+    upper_bound = upper_bound / len(dataloader.dataset)
+    ai_top1=(ai_top1.item() * 1.0) / len(dataloader.dataset)
+    ai_top2=(ai_top2.item() * 1.0) / len(dataloader.dataset)
+    ai_top3=(ai_top3.item() * 1.0) / len(dataloader.dataset)
+
+    print('\teval overall score: %.2f' % (100 * score))
+    print('\teval up_bound score: %.2f' % (100 * upper_bound))
+    print('\ttop1_ai_score: %.2f' % (100 * ai_top1))
+    print('\ttop2_ai_score: %.2f' % (100 * ai_top2))
+    print('\ttop3_ai_score: %.2f' % (100 * ai_top3))
+    
 def main():
     args = parse_args()
     dataset = args.dataset
